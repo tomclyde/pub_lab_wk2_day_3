@@ -10,4 +10,8 @@ class Pub
     @drinks = drinks
   end
 
+  def sell_drink
+    return @drinks
+  end
+
 end
