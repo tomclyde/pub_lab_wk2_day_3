@@ -22,4 +22,16 @@ class Customer
     @drunkness_level += drink_alcohol_level
   end
 
+  def return_drunkness_level
+    return @drunkness_level
+  end
+
+  def do_not_serve
+    if @drunkness_level >= 10
+      return true
+    else
+      return false
+    end
+  end
+
 end

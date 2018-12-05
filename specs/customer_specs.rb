@@ -47,4 +47,9 @@ class TestCustomer < Minitest::Test
     assert_equal(6, @cust2.drunkness_level)
   end
 
+  def test_do_not_serve
+    level = @cust4.drunkness_level
+    assert_equal(true, @cust4.do_not_serve)
+  end
+
 end
