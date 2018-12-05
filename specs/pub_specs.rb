@@ -8,9 +8,10 @@ class TestPub < Minitest::Test
 
   def setup
     @bud = Drink.new("beer",4.50)
-    @highland_park =  Drink.new("whiskey", 6.00)
+    @highland_park =  Drink.new("whisky", 6.00)
+    @cust2 = Customer.new("Tom", 33, 50.00)
     @pub1 = Pub.new("Standing Order", 0.0, [])
-    @pub2 = Pub.new("Milnes", 200.50, [@bud, @highland_park] )
+    @pub2 = Pub.new("Milnes", 200.50, [@bud, @highland_park])
   end
 
   def test_pub_name
@@ -31,6 +32,14 @@ class TestPub < Minitest::Test
 
   def test_drinks__populated
     assert_equal([@bud,@highland_park], @pub2.drinks)
+  end
+
+  def test_pub_till__money_increase
+  @cust2.buy_drink(@pub2,"whisky")
+  cust_drink_price = @pub2.drinks[1].drink_price
+  @pub2.pub_till_money_increase(cust_drink_price)
+  assert_equal(206.50, @pub2.till)
+
   end
 
 

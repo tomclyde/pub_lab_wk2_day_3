@@ -9,5 +9,9 @@ class Drink
     @price = price
   end
 
+  def drink_price
+    return @price
+  end 
+
 
 end

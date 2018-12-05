@@ -14,4 +14,10 @@ class Pub
     return @drinks
   end
 
+  def pub_till_money_increase(drink_price)
+    @till += drink_price
+  end 
+
+
+
 end
