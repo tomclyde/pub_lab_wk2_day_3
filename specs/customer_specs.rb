@@ -1,3 +1,4 @@
+require 'pry'
 require('minitest/autorun')
 require('minitest/rg')
 require_relative('../pub')
@@ -7,13 +8,15 @@ require_relative('../drink')
 class TestCustomer < Minitest::Test
 
   def setup
-    @cust1 = Customer.new("Jennifer", 21, 0.0)
-    @cust2 = Customer.new("Tom", 33, 50.00)
+    @cust1 = Customer.new("Jennifer", 21, 0, 0.0)
+    @cust2 = Customer.new("Tom", 33, 3, 50.00)
+    @cust3 = Customer.new("Louise", 32, 9, 30.00)
+    @cust4 = Customer.new("Arun", 24, 12, 20.00)
 
-    @bud = Drink.new("beer",4.50)
-    @highland_park =  Drink.new("whisky", 6.00)
+    @bud = Drink.new("beer",4.50, 1)
+    @highland_park =  Drink.new("whisky", 6.00, 3)
 
-    @pub2 = Pub.new("Milnes", 200.50, [@bud, @highland_park] )
+    @pub2 = Pub.new("Milnes", 200.50, [@bud, @highland_park])
   end
 
   def test_customer_name
@@ -32,10 +35,16 @@ class TestCustomer < Minitest::Test
     assert_equal(50.00, @cust2.wallet)
   end
 
-  def test_customer_buy_drink__whisky
-    @cust2.buy_drink(@pub2, "whisky")
+  def test_customer_buy_drink
+    #binding.pry
+    @cust2.buy_drink(@pub2, @highland_park)
     assert_equal(44.00, @cust2.wallet)
   end
 
+  def test_increase_customer_drunkness_level
+    #binding.pry
+    @cust2.buy_drink(@pub2, @highland_park)
+    assert_equal(6, @cust2.drunkness_level)
+  end
 
 end
