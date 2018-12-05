@@ -1,8 +1,8 @@
 require('minitest/autorun')
 require('minitest/rg')
 require_relative('../pub')
-#require_relative('../customer')
-#require_relative('../drink')
+require_relative('../customer')
+require_relative('../drink')
 
 class TestPub < Minitest::Test
 
