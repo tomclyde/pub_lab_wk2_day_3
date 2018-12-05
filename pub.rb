@@ -1,13 +1,14 @@
 require 'pry'
 
 class Pub
-  attr_reader :name, :till, :drinks
+  attr_reader :name, :till, :drinks, :food
 
 
-  def initialize(name, till, drinks=[])
+  def initialize(name, till, drinks=[], food=[])
     @name = name
     @till = till
     @drinks = drinks
+    @food = food
   end
 
 
@@ -30,6 +31,10 @@ class Pub
     else
       return false
     end
+  end
+
+  def pub_stock_value
+    return @drinks.length
   end
 
 
