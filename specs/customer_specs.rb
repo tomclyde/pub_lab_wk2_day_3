@@ -12,6 +12,7 @@ class TestCustomer < Minitest::Test
     @cust2 = Customer.new("Tom", 33, 3, 50.00)
     @cust3 = Customer.new("Louise", 32, 9, 30.00)
     @cust4 = Customer.new("Arun", 24, 12, 20.00)
+    @cust5 = Customer.new("Ryan", 9, 0, 20.00)
 
     @bud = Drink.new("beer",4.50, 1)
     @highland_park =  Drink.new("whisky", 6.00, 3)
@@ -35,10 +36,16 @@ class TestCustomer < Minitest::Test
     assert_equal(50.00, @cust2.wallet)
   end
 
-  def test_customer_buy_drink
+  def test_customer_buy_drink__over18
     #binding.pry
     @cust2.buy_drink(@pub2, @highland_park)
     assert_equal(44.00, @cust2.wallet)
+  end
+
+  def test_customer_buy_drink__under18
+    #binding.pry
+    @cust5.buy_drink(@pub2, @highland_park)
+    assert_equal(20, @cust5.wallet)
   end
 
   def test_increase_customer_drunkness_level
@@ -47,9 +54,5 @@ class TestCustomer < Minitest::Test
     assert_equal(6, @cust2.drunkness_level)
   end
 
-  def test_do_not_serve
-    level = @cust4.drunkness_level
-    assert_equal(true, @cust4.do_not_serve)
-  end
 
 end
