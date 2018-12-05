@@ -9,6 +9,7 @@ class TestPub < Minitest::Test
   def setup
     @bud = Drink.new("beer",4.50)
     @highland_park =  Drink.new("whisky", 6.00)
+    @cust1 = Customer.new("Ryan", 9, 10.00)
     @cust2 = Customer.new("Tom", 33, 50.00)
     @pub1 = Pub.new("Standing Order", 0.0, [])
     @pub2 = Pub.new("Milnes", 200.50, [@bud, @highland_park])
@@ -42,6 +43,15 @@ class TestPub < Minitest::Test
 
   end
 
+  def test_cust_age_check__over18
+    result = @pub2.cust_age_check(@cust2)
+    assert_equal(true, result)
+  end
+
+  def test_cust_age_check__under18
+    result = @pub2.cust_age_check(@cust1)
+    assert_equal(false, result)
+  end
 
 
 
